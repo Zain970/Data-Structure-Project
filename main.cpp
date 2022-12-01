@@ -3,7 +3,6 @@
 #include <string>
 using namespace std;
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////// DYNAMIC ARRAY  ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -11,9 +10,10 @@ template <class T>
 class dynamicClass
 {
 public:
-    T* arr;
+    T *arr;
     int capacity;
     int current;
+
 public:
     dynamicClass()
     {
@@ -26,7 +26,7 @@ public:
     {
         if (current == capacity)
         {
-            T* temp = new T[2 * capacity];
+            T *temp = new T[2 * capacity];
             for (int i = 0; i < capacity; i++)
             {
                 temp[i] = arr[i];
@@ -48,7 +48,7 @@ public:
         return current;
     }
 
-    T& operator [](const int index)
+    T &operator[](const int index)
     {
         if (index >= 0 && index <= current)
         {
@@ -80,7 +80,7 @@ public:
     }
 };
 
-dynamicClass <int>D1;
+dynamicClass<int> D1;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////// STACK /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,7 @@ class node2
 {
 public:
     X Data;
-    node2<X>* Next;
+    node2<X> *Next;
 
 public:
     node2(X val)
@@ -102,7 +102,7 @@ template <class X>
 class Stack
 {
 private:
-    node2<X>* Top;
+    node2<X> *Top;
 
 public:
     Stack()
@@ -122,7 +122,7 @@ public:
     }
     void Push(X val)
     {
-        node2<X>* newNode = new node2<X>(val);
+        node2<X> *newNode = new node2<X>(val);
         newNode->Next = Top;
         this->Top = newNode;
     }
@@ -135,7 +135,7 @@ public:
         }
         else
         {
-            node2<X>* Temp = this->Top;
+            node2<X> *Temp = this->Top;
             this->Top = Top->Next;
             delete Temp;
         }
@@ -162,14 +162,14 @@ class node
 {
 public:
     X data;
-    node<X>* Next;
+    node<X> *Next;
 };
 template <class X>
 class Queue
 {
 public:
-    node<X>* Front;
-    node<X>* Rear;
+    node<X> *Front;
+    node<X> *Rear;
 
 public:
     Queue()
@@ -193,7 +193,7 @@ public:
 
     void push(X n)
     {
-        node<X>* newNode = new node<X>;
+        node<X> *newNode = new node<X>;
         newNode->data = n;
 
         newNode->Next = NULL;
@@ -227,7 +227,7 @@ public:
             }
             else
             {
-                node<X>* T = Front;
+                node<X> *T = Front;
                 temp = Front->data;
                 Front = Front->Next;
                 delete T;
@@ -246,7 +246,7 @@ public:
         }
         else
         {
-            node<char>* T = Front;
+            node<char> *T = Front;
             while (T != NULL)
             {
                 T = T->Next;
@@ -264,7 +264,7 @@ public:
         }
         else
         {
-            node<X>* temp = Front;
+            node<X> *temp = Front;
             while (temp != NULL)
             {
                 cout << temp->data << "->";
@@ -278,7 +278,7 @@ class Node
 {
 public:
     int data;
-    Node* Next;
+    Node *Next;
 
 public:
     ////////////////////////////////////////////////// DEFAULT CONSTRUCTOR ////////////////////////////////////////////////////////
@@ -302,7 +302,7 @@ public:
 class Graph
 {
 public:
-    Node* G1;
+    Node *G1;
     int totalVertices; // Total Vertices
     int totaledges;    // Total Edges
     int filled;
@@ -346,7 +346,7 @@ public:
     }
 
     ///////////////////////////////////////////////////// INSERT AN EDGE  //////////////////////////////////////////////////////////
-    void insert(Node* Head, int val)
+    void insert(Node *Head, int val)
     {
         if (Head == NULL)
         {
@@ -354,7 +354,7 @@ public:
         }
         else
         {
-            Node* Temp = Head;
+            Node *Temp = Head;
             while (Temp->Next != NULL)
             {
                 Temp = Temp->Next;
@@ -441,9 +441,9 @@ public:
             }
         }
     }
-    
+
     //////////////////////////////////// RETURNS A TOTAL NUMBER OF EDGES A PARTICULAR VERTEX HAVE ///////////////////////////////////
-    int  getEdges(Node* Temp)
+    int getEdges(Node *Temp)
     {
         int len = 0;
         while (Temp != NULL)
@@ -455,9 +455,9 @@ public:
     }
 
     /////////////////////////////////////////////// DEPTH FIRST TRAVERSAL //////////////////////////////////////////////////////////
-    dynamicClass<int>* DFS(int s)
+    dynamicClass<int> *DFS(int s)
     {
-        dynamicClass<int>* visited = new dynamicClass<int>[this->totalVertices];
+        dynamicClass<int> *visited = new dynamicClass<int>[this->totalVertices];
         int k = 0;
 
         Stack<int> S1;
@@ -470,7 +470,7 @@ public:
             int v = S1.Peak();
             S1.Pop();
             std::cout << "Visited :" << v << std::endl;
-            Node* Temp=NULL;
+            Node *Temp = NULL;
             for (int i = 0; i < this->filled; i++)
             {
                 if (v == this->G1[i].data)
@@ -504,18 +504,18 @@ public:
     }
 
     /////////////////////////////////////////////// BREATH FIRST TRAVERSAL //////////////////////////////////////////////////////////
-    dynamicClass<int>* BFS(int s)
+    dynamicClass<int> *BFS(int s)
     {
-        dynamicClass<int>* visited = new dynamicClass<int>;     // Dynamic Array Of Visited Elements
-        Queue<int> Q1;                                        // Queue
+        dynamicClass<int> *visited = new dynamicClass<int>; // Dynamic Array Of Visited Elements
+        Queue<int> Q1;                                      // Queue
         Q1.push(s);
         visited->push_back(s);
 
         while (!Q1.isEmpty())
         {
             int v = Q1.pop();
-            //std::cout << "Visited : " << v << std::endl;
-            Node* Temp = NULL;
+            // std::cout << "Visited : " << v << std::endl;
+            Node *Temp = NULL;
             for (int i = 0; i < this->filled; i++)
             {
                 if (v == this->G1[i].data)
@@ -539,15 +539,14 @@ public:
                 }
                 Temp = Temp->Next;
             }
-
         }
         return visited;
     }
 
     //////////////////////////////////////// CHECK IF A PARTICULAR VERTEX HAS ALREADY AN A EDGE /////////////////////////////////////
-    bool isPresent(Node* Head, int val)
+    bool isPresent(Node *Head, int val)
     {
-        Node* Temp = Head;
+        Node *Temp = Head;
         while (Temp != NULL)
         {
             if (Temp->data == val)
@@ -558,11 +557,11 @@ public:
         }
         return false;
     }
-    
+
     /////////////////////////////////////////// PRINTS A GRAPH ADJENCY LIST ////////////////////////////////////////////////////////
     void printGraph()
     {
-        Node* Temp;
+        Node *Temp;
         int count = 1;
         for (int i = 0; i < this->filled; i++)
         {
@@ -587,10 +586,10 @@ public:
     }
 
     ///////////////////////////////////////////////// CHECK FOR SINK NODES /////////////////////////////////////////////////////////
-    dynamicClass<int>* sinkNodes()
+    dynamicClass<int> *sinkNodes()
     {
-        dynamicClass<int>* SINK = new dynamicClass<int>;
-        Node* Temp;
+        dynamicClass<int> *SINK = new dynamicClass<int>;
+        Node *Temp;
         bool check = false;
         int count = 0;
         for (int i = 0; i < this->totalVertices; i++)
@@ -616,11 +615,12 @@ public:
                 Temp = Temp->Next;
             }
         }
-        std::cout << "The number of sink nide are " << count << std::endl;;
+        std::cout << "The number of sink nide are " << count << std::endl;
+        ;
         return SINK;
     }
 
-    //////////////////////////////////////////////// Out-Degree Distribution  ///////////////////////////////////////////////////// 
+    //////////////////////////////////////////////// Out-Degree Distribution  /////////////////////////////////////////////////////
     float outdegreeDistribution(int v)
     {
         float total = 0;
@@ -639,8 +639,8 @@ public:
     //////////////////////////////////////////////// In-degree DistrIbution   /////////////////////////////////////////////////////
     float indegreeDistribution(int v)
     {
-        int* indegree = new int[this->filled];
-        Node* Temp = NULL;
+        int *indegree = new int[this->filled];
+        Node *Temp = NULL;
         int count = 0;
         for (int i = 0; i < this->filled; i++)
         {
@@ -667,16 +667,16 @@ public:
                 total = total + 1;
             }
         }
-        std::cout << "Total :" << total/this->totalVertices << std::endl;
+        std::cout << "Total :" << total / this->totalVertices << std::endl;
 
         return total / this->totalVertices;
     }
 
     ///////////////////////////////////////////////// CHECK FOR SOURCE NODES ///////////////////////////////////////////////////////
-    dynamicClass<int>* sourceNodes()
+    dynamicClass<int> *sourceNodes()
     {
-        dynamicClass<int>* SOURCE = new dynamicClass<int>;
-        Node* Temp;
+        dynamicClass<int> *SOURCE = new dynamicClass<int>;
+        Node *Temp;
         int count = 0;
         bool check = false;
         for (int i = 0; i < this->totalVertices; i++)
@@ -713,8 +713,8 @@ public:
     //////////////////////////////////////////////// CHECKS FOR ISOLATED NODES  ////////////////////////////////////////////////////
     void isolatedNodes()
     {
-        dynamicClass<int>* SINK = sinkNodes();
-        dynamicClass<int>* SOURCE = sourceNodes();
+        dynamicClass<int> *SINK = sinkNodes();
+        dynamicClass<int> *SOURCE = sourceNodes();
         if (SINK->current == 0 || SOURCE->current == 0)
         {
             std::cout << "No isolated Node" << std::endl;
@@ -733,46 +733,46 @@ public:
     }
 
     ////////////////////////////////////////////////////// IN-ALGORITHM ////////////////////////////////////////////////////////////
-    dynamicClass<int>* inAlgorithm(int s)
+    dynamicClass<int> *inAlgorithm(int s)
     {
-        dynamicClass<int>* IN = new dynamicClass<int>;        // Let in be an array
+        dynamicClass<int> *IN = new dynamicClass<int>; // Let in be an array
 
-        dynamicClass<int>* Temp;
+        dynamicClass<int> *Temp;
 
-        for (int i = 0; i < this->filled; i++)                     // for each vertex v in v
+        for (int i = 0; i < this->filled; i++) // for each vertex v in v
         {
             Temp = this->BFS(this->G1[i].data);
 
-            bool check = Temp->search(s);                     // check if s in BFS
+            bool check = Temp->search(s); // check if s in BFS
 
             if (check == true)
             {
-                IN->push_back(this->G1[i].data);            // if s in bfs IN.add
+                IN->push_back(this->G1[i].data); // if s in bfs IN.add
             }
             delete Temp;
         }
-        return IN;                                          // return in
+        return IN; // return in
     }
 
     //////////////////////////////////////////////////// OUT-ALGORITMN /////////////////////////////////////////////////////////////
-    dynamicClass<int>* outAlgorithm(int s)
+    dynamicClass<int> *outAlgorithm(int s)
     {
-        dynamicClass<int>* OUT;                            // let out be an array
+        dynamicClass<int> *OUT; // let out be an array
         OUT = BFS(s);
-        return OUT;                                        // return out
+        return OUT; // return out
     }
 
     ///////////////////////////////////////////// STRONGLY CONNECTED COMPOENENT ////////////////////////////////////////////////////
-    Node* StronglyConnectedComponent()
+    Node *StronglyConnectedComponent()
     {
-        Node* SSC = new Node[this->filled + 1];
+        Node *SSC = new Node[this->filled + 1];
         int k = 0;
         bool move = false;
         for (int i = 0; i < this->filled; i++)
         {
-            dynamicClass<int>* IN = this->inAlgorithm(this->G1[i].data);                // IN ARRAY
+            dynamicClass<int> *IN = this->inAlgorithm(this->G1[i].data); // IN ARRAY
 
-            dynamicClass<int>* OUT = this->outAlgorithm(this->G1[i].data);              // OUT ARRAY
+            dynamicClass<int> *OUT = this->outAlgorithm(this->G1[i].data); // OUT ARRAY
 
             // TAKING INTERSECTION OF  THE IN AND OUT ARRAY
             for (int j = 0; j < OUT->current; j++)
@@ -792,13 +792,13 @@ public:
             }
             move = false;
             k = k + 1;
-            delete[]IN;
-            delete[]OUT;
+            delete[] IN;
+            delete[] OUT;
         }
         SSC[k].data = -1;
 
         // TAKING UNIQUE OF THE MOST STRONGLY CONNECTED COMPONENTS
-        Node* Temp;
+        Node *Temp;
         int max_index = 0;
         int max_value = 0;
         for (int i = 0; i < k; i++)
@@ -822,18 +822,17 @@ public:
         std::cout << " ----> Length :" << this->getEdges(&SSC[max_index]) << std::endl;
         std::cout << "--------------------------------------------------------------" << std::endl;
 
-
         return SSC;
     }
 
     //////////////////////////////////////////////// SIZE DISTRIBUTION OF ALL SCC /////////////////////////////////////////////////
     void SizeDistributionOfAllSCC()
     {
-        Node* SCC = this->StronglyConnectedComponent();
+        Node *SCC = this->StronglyConnectedComponent();
         std::cout << "The size distribution of all SCC's are :" << std::endl;
         for (int i = 0; SCC[i].data != -1; i++)
         {
-            Node* Temp = &SCC[i];
+            Node *Temp = &SCC[i];
             while (Temp != NULL)
             {
                 std::cout << Temp->data << "->";
@@ -844,14 +843,14 @@ public:
     }
 
     /////////////////////////////////////////////// WEEKLY CONNECTED COMPONENT  ////////////////////////////////////////////////////
-    Node* WeeklyConnectedComponent()
+    Node *WeeklyConnectedComponent()
     {
-        Node* WCC = new Node[this->filled];
+        Node *WCC = new Node[this->filled];
         int k = 0;
 
-        dynamicClass<int>* Temp = new dynamicClass<int>;
+        dynamicClass<int> *Temp = new dynamicClass<int>;
 
-        for (int i = 0; i < this->filled; i++)             // for each vertex v in V
+        for (int i = 0; i < this->filled; i++) // for each vertex v in V
         {
             Temp = this->BFS(this->G1[i].data);
             for (int j = 0; j < Temp->current; j++)
@@ -866,7 +865,7 @@ public:
                 }
             }
             k = k + 1;
-            delete[]Temp;
+            delete[] Temp;
         }
         WCC[k].data = -1;
 
@@ -883,10 +882,9 @@ public:
             }
         }
 
-
         std::cout << "---------------------------------------------------------------" << std::endl;
         std::cout << "The most weekly connected component is ";
-        Node* Temp2 = &WCC[min_index];
+        Node *Temp2 = &WCC[min_index];
         while (Temp2 != NULL)
         {
             std::cout << Temp2->data << ",";
@@ -901,11 +899,11 @@ public:
     //////////////////////////////////////////////// SIZE DISTRIBUTION OF ALL WCC //////////////////////////////////////////////////
     void SizeDistributionOfAllWCC()
     {
-        Node* WCC = this->WeeklyConnectedComponent();
+        Node *WCC = this->WeeklyConnectedComponent();
         std::cout << "The size distribution of all WCC's are :" << std::endl;
         for (int i = 0; WCC[i].data != -1; i++)
         {
-            Node* Temp = &WCC[i];
+            Node *Temp = &WCC[i];
             while (Temp != NULL)
             {
                 std::cout << Temp->data << "->";
@@ -918,11 +916,11 @@ public:
     ///////////////////////////////////////////////// FIND BRIDGE EDGES IN GRAPH ///////////////////////////////////////////////////
     void bridgeEdges()
     {
-        dynamicClass<int>* T = this->BFS(this->G1[0].data);
+        dynamicClass<int> *T = this->BFS(this->G1[0].data);
         int total = T->current;
         delete T;
 
-        int** Arr = new int* [this->filled];
+        int **Arr = new int *[this->filled];
 
         // allocating two dimensional array for saving bridge edges
         for (int k = 0; k < this->filled; k++)
@@ -943,7 +941,7 @@ public:
 
         for (int i = 0; i < this->filled; i++)
         {
-            Node* Temp = this->G1[i].Next;
+            Node *Temp = this->G1[i].Next;
             while (Temp != NULL)
             {
                 int original = Temp->data;
@@ -954,14 +952,14 @@ public:
                 if (T->current <= total)
                 {
                     Arr[row][column] = this->G1[i].data;
-                    column=column+1;
+                    column = column + 1;
 
                     Arr[row][column] = original;
-                    row=row+1;
+                    row = row + 1;
                 }
 
                 column = 0;
-                delete[]T;
+                delete[] T;
                 Temp->data = original;
                 Temp = Temp->Next;
             }
@@ -980,8 +978,8 @@ public:
     ////////////////////////////////////////////////// CALCULATES SHORTEST PATH ////////////////////////////////////////////////////
     bool Shortest_Path_Find(int s, int dest, int pred[], int dist[])
     {
-        dynamicClass<int>* visited = new dynamicClass<int>;     // Dynamic Array Of Visited Elements
-        Queue<int> Q1;                                          // Queue
+        dynamicClass<int> *visited = new dynamicClass<int>; // Dynamic Array Of Visited Elements
+        Queue<int> Q1;                                      // Queue
         Q1.push(s);
         visited->push_back(s);
 
@@ -998,8 +996,8 @@ public:
         while (!Q1.isEmpty())
         {
             int v = Q1.pop();
-            //std::cout << "Visited : " << v << std::endl;
-            Node* Temp = NULL;
+            // std::cout << "Visited : " << v << std::endl;
+            Node *Temp = NULL;
             for (int i = 0; i < this->filled; i++)
             {
                 if (v == this->G1[i].data)
@@ -1034,16 +1032,15 @@ public:
                 }
                 Temp = Temp->Next;
             }
-
         }
         return visited;
     }
 
     void Give_Shortest_Path(int s, int dest)
     {
-        Node* gggg = this->G1;
-        int* pred = new int[this->totalVertices];
-        int* dist = new int[this->totalVertices];
+        Node *gggg = this->G1;
+        int *pred = new int[this->totalVertices];
+        int *dist = new int[this->totalVertices];
         if (Shortest_Path_Find(s, dest, pred, dist) == false)
         {
             cout << "Source Node not connected to the Destination" << endl;
@@ -1057,13 +1054,12 @@ public:
             path.push_back(pred[crawl]);
             crawl = pred[crawl];
         }
-        cout << "Shortest path length is : "<< dist[dest]<<std::endl;
+        cout << "Shortest path length is : " << dist[dest] << std::endl;
         cout << "Shortest Path is :";
         for (int i = path.size() - 1; i >= 0; i--)
         {
             cout << path[i] << " ";
         }
-
     }
 };
 int main()
@@ -1071,16 +1067,16 @@ int main()
 
     //================================================= DATA LOADING ====================================================//
     int k = 0;
-    Graph G1;              // Graph Object  directed graph
+    Graph G1; // Graph Object  directed graph
     Graph G2;
-    int line = 0;          // Number of lines
+    int line = 0; // Number of lines
     std::string col1;
     std::string col2;
 
     ifstream obj;
     ifstream obj1;
-    obj.open("file3.txt");
-    obj1.open("file3.txt");
+    obj.open("dataSet.txt");
+    obj1.open("dataSet.txt");
 
     getline(obj1, col1);
 
@@ -1095,9 +1091,9 @@ int main()
         {
             obj >> col1;
             obj >> col1;
-            obj >> col1;   // nodes
+            obj >> col1; // nodes
             obj >> col2;
-            obj >> col2;   // edges
+            obj >> col2; // edges
 
             G1.makeGraph(std::stoi(col1), std::stoi(col2));
             G2.makeGraph(std::stoi(col1), std::stoi(col2));
@@ -1110,9 +1106,9 @@ int main()
         }
         else if (line > 3)
         {
-            obj >> col1;                                              // first number read
-            obj >> col2;                                              // second number read
-            G1.addEdgeDirected(std::stoi(col1), std::stoi(col2));   // add edge between two verticess
+            obj >> col1;                                          // first number read
+            obj >> col2;                                          // second number read
+            G1.addEdgeDirected(std::stoi(col1), std::stoi(col2)); // add edge between two verticess
             G2.addEdgeUnDirected(std::stoi(col1), std::stoi(col2));
         }
         line = line + 1;
@@ -1148,7 +1144,7 @@ int main()
     {
     case 1:
 
-        std::cout<<"The total number of nodes are :"<<G1.getVertices()<<std::endl;
+        std::cout << "The total number of nodes are :" << G1.getVertices() << std::endl;
         break;
 
     case 2:
@@ -1169,7 +1165,7 @@ int main()
         break;
 
     case 6:
-        G2.bridgeEdges();                          // undirected  graph
+        G2.bridgeEdges(); // undirected  graph
         break;
 
     case 8:
@@ -1180,7 +1176,7 @@ int main()
         std::cin >> destination;
 
         std::cout << std::endl;
-        G2.Give_Shortest_Path(source,destination);         // undirected graph 
+        G2.Give_Shortest_Path(source, destination); // undirected graph
         break;
 
     case 10:
@@ -1195,7 +1191,6 @@ int main()
         G1.outdegreeDistribution(source);
         break;
 
-
     case 12:
         G1.StronglyConnectedComponent();
         break;
@@ -1205,11 +1200,11 @@ int main()
         break;
 
     case 14:
-        G2.WeeklyConnectedComponent();                 // undirected graph
+        G2.WeeklyConnectedComponent(); // undirected graph
         break;
 
     case 15:
-        G2.SizeDistributionOfAllWCC();                // undirected graph
+        G2.SizeDistributionOfAllWCC(); // undirected graph
         break;
 
     case 16:
